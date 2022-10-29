@@ -10,10 +10,21 @@ pipeline {
     }
 
     stage('Example Test') {
-      agent any
-      steps {
-        echo 'Hello, JDK'
-        sh 'java -version'
+      parallel {
+        stage('Example Test') {
+          agent any
+          steps {
+            echo 'Hello, JDK'
+            sh 'java -version'
+          }
+        }
+
+        stage('buzz') {
+          steps {
+            echo 'Buzz Buzz'
+          }
+        }
+
       }
     }
 

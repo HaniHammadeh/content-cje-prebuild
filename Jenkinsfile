@@ -1,31 +1,19 @@
 pipeline {
-        /* insert Declarative Pipeline here */
-    agent {
-        node {
-            properties([parameters([string(defaultValue: 'ronaldo', description: '', name: 'name', trim: false)])])
-        def mvnHome
-        
-        }
-    stages {    
-        stage('Preparation') { // for display purposes
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/linuxacademy/content-cje-prebuild.git']]])
-                
-            mvnHome = tool 'M3'
-        }
-        stage('Build') {
-            // Run the maven build
-            if (isUnix()) {
-                sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-            } else {
-                bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+    agent any 
+    stages {
+        stage('Example Build') {
+            agent { docker 'maven:3.8.1-adoptopenjdk-11' } 
+            steps {
+                echo 'Hello, Maven'
+                sh 'mvn --version'
             }
         }
-        stage('Post Job'){
-            sh 'bin/makeindex'
+        stage('Example Test') {
+            agent { docker 'openjdk:8-jre' } 
+            steps {
+                echo 'Hello, JDK'
+                sh 'java -version'
+            }
         }
-        stage('Results') {
-            archiveArtifacts 'index.jsp'
-        }
-        }
-    
+    }
 }

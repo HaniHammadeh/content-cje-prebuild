@@ -1,6 +1,6 @@
 pipeline {
         /* insert Declarative Pipeline here */
-
+    agent any
     node {
         properties([parameters([string(defaultValue: 'ronaldo', description: '', name: 'name', trim: false)])])
     def mvnHome

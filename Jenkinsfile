@@ -1,3 +1,6 @@
+pipeline {
+    /* insert Declarative Pipeline here */
+
 node {
     properties([parameters([string(defaultValue: 'ronaldo', description: '', name: 'name', trim: false)])])
    def mvnHome
@@ -20,4 +23,5 @@ node {
    stage('Results') {
       archiveArtifacts 'index.jsp'
    }
+}
 }

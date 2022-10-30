@@ -23,7 +23,8 @@ pipeline {
           steps {
             echo 'Buzz Buzz'
             sleep 15
-            sh '''chmod +x ./bin/test_all.sh
+            sh '''echo I am $BUZZ
+chmod +x ./bin/test_all.sh
 ./bin/test_all.sh'''
           }
         }
@@ -31,5 +32,8 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    BUZZ = 'BUZZY'
   }
 }

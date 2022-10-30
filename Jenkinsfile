@@ -23,7 +23,7 @@ pipeline {
           steps {
             echo 'Buzz Buzz'
             sleep 15
-            
+            sh './bin/test_all.sh'
           }
         }
 

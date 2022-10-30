@@ -23,10 +23,7 @@ pipeline {
           steps {
             echo 'Buzz Buzz'
             sleep 15
-            timestamps() {
-              tee(file: 'test.log')
-            }
-
+            
           }
         }
 

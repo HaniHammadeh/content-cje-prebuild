@@ -22,7 +22,7 @@ pipeline {
         stage('buzz') {
           steps {
             echo 'Buzz Buzz'
-            sleep 10
+            sleep 15
           }
         }
 

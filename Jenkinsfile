@@ -26,7 +26,6 @@ pipeline {
             sh '''echo I am $BUZZ
 chmod +x ./bin/test_all.sh
 ./bin/test_all.sh'''
-            archiveArtifacts(fingerprint: true, artifacts: 'traget/**')
           }
         }
 

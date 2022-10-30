@@ -23,7 +23,8 @@ pipeline {
           steps {
             echo 'Buzz Buzz'
             sleep 15
-            sh './bin/test_all.sh'
+            sh '''chmod +x ./bin/test_all.sh
+./bin/test_all.sh'''
           }
         }
 

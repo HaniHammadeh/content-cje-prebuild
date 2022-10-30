@@ -23,6 +23,7 @@ pipeline {
         stage('buzz') {
           steps {
             echo 'Buzz Buzz'
+            input(message: 'shall we do it', ok: 'yes sure!')
             sleep 15
             sh '''echo I am $BUZZ
 chmod +x ./bin/test_all.sh

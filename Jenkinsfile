@@ -6,6 +6,7 @@ pipeline {
       steps {
         echo 'Hello, Maven'
         sh 'uname -a'
+        stash(includes: 'target/**', name: 'test_stash')
       }
     }
 
@@ -26,6 +27,7 @@ pipeline {
             sh '''echo I am $BUZZ
 chmod +x ./bin/test_all.sh
 ./bin/test_all.sh'''
+            unstash 'test_stash'
           }
         }
 
